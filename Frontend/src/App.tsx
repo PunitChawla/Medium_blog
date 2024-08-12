@@ -4,6 +4,7 @@ import { Signup } from './pages/singup'
 import { Signin } from './pages/singin'
 import { Blog } from './pages/blog'
 import { Blogs } from './pages/blogs'
+import { Publish } from './pages/Publish'
 function App() {
 
   return (
@@ -13,7 +14,8 @@ function App() {
       <Route path='/signin' element=  {< Signin />}></Route>
       <Route path='/blog/:id' element=  {< Blog />}></Route>
       <Route path='/blogs' element=  {< Blogs />}></Route>
-      
+      <Route path='/publish' element=  {<Publish/>}></Route>
+
       ha bhi 
     </Routes>
     </BrowserRouter>
