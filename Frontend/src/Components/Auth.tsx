@@ -3,8 +3,13 @@ import axios from "axios";
 import { ChangeEvent, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {BACKEND_URL} from "../config"
+import { Alert } from "./Alert";
 
 export const Auth = ({ type }: { type: "signup" | "signin" }) => {
+
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
+
     const navigate = useNavigate();
     // input variable should store in state variable so  for type sfety we use our common moudle here which tail us ki yahi input aane chahiye agar kuch or huaa to it's threw an error 
     // it's give a very nice suggestion as well as 
@@ -20,7 +25,8 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
             localStorage.setItem("token" , jwt)
             navigate("/blogs")
         } catch (error) {
-            
+          setAlertMessage('Incorrect  credentials');
+          setAlertVisible(true)
         }
     }
   return (
@@ -65,6 +71,9 @@ export const Auth = ({ type }: { type: "signup" | "signin" }) => {
                 <button onClick={sendrequest} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded w-full mt-7">
                     {type ==  "signup" ? "Sign up" : "Sign in"}
                 </button>
+                {alertVisible && <Alert message={alertMessage} onClose={()=>{
+                  setAlertVisible(false)
+                }}/>}
         </div>
       </div>
       </div>
